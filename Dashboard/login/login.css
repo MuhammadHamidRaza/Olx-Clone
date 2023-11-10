@@ -1,0 +1,43 @@
+body {
+    background-color: #222831;
+  }
+.container {
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(238, 226, 0);
+    border-radius: 5px;
+    margin-top: 10%;
+    margin-left: 38%;
+    padding: 20px;
+    width: 25%;
+    background-color: #000000 ;
+    color: white;
+  }
+  
+.container h3 {
+    text-align: center;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: black;
+}
+  
+.container span input {
+    border-radius: 2px;
+    display: block;
+    width: 300px;
+    height: 25px;
+}
+.container span button {
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.href{
+  text-align: center;
+}
+  
