@@ -834,3 +834,13 @@
     width: 135px;
 }
 }
+@media (max-width: 375px) {
+    .images{
+        width: 300px !important
+    }
+}
+@media (max-width: 320px) {
+    .images{
+        width: 237px !important
+    }
+}

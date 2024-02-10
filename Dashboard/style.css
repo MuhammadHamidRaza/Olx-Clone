@@ -100,7 +100,29 @@
     padding: 7px 8px;
     margin-right: 5px;
 }
-
+#logout:hover{
+    background-color: gold;
+    color: black !important;
+}
+#logout{
+    background-color: black;
+    width: 130px;
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+#myAdd:hover{
+    /* margin: auto; */
+    background: red;
+    color: white;
+}
+#myAdd{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    background: dodgerblue;
+    color: black;
+}
 .nav-heading {
     font-size: 11.5px;
 }
@@ -823,5 +845,15 @@
 
     .download-info > div {
         width: 50%;
+    }
+}
+@media (max-width: 375px) {
+    .images{
+        width: 300px !important
+    }
+}
+@media (max-width: 320px) {
+    .images{
+        width: 237px !important
     }
 }

@@ -27,7 +27,10 @@
             <div class="nav-sub-child">
                 <img src="./assets/logo/property-logo.png" alt="" class="nav-property-logo">
                 <p class="nav-heading">PROPERTY</p>
+
             </div>
+             <h3 onclick="logout()" id="logout">Logout</h3>
+           <h1 id="myAdd">My Add</h1>
         </div>
         <!-- Nav Bar Second Part -->
         <div class="nav-child-2">
@@ -85,8 +88,8 @@
             </div>
             <!-- Search Field -->
             <div class="search-div">
-                    <input type="text" placeholder="Find Cars, Mobile Phones and more..." class="search-input">
-                <div class="search-icon-area">
+                    <input id="input-Type" type="text" placeholder="Find Cars, Mobile Phones and more..." class="search-input">
+                <div onclick="search()" class="search-icon-area">
                     <img src="./assets/icons/search-icon-white.png" alt="" class="search-icon-white">
                 </div>
             </div>
@@ -97,14 +100,14 @@
                 <input type="text" placeholder="All ads in Pakistan" class="search-input">
             </div>
             <!-- Login Button -->
-            <span  class="login-btn" id="loginlink">
-                Login
-            </span>
+<!-- Inside your HTML file -->
+<span id="loginLink"></span>
+
             
             <!-- Sell Button -->
                 <div class="sell-btn-div">
                     <img src="./assets/icons/sell-btn-plus-icon.svg" alt="Plus icon" class="plus-icon">
-                    <p class="sell-txt">SELL</p> 
+                    <p class="sell-txt"><a href="./src/post/index.html">Sell</a></p> 
                 </div>
         </div>
         <div class="top-btn-div">
@@ -449,7 +452,7 @@
                     </div>
             </div>
         </div>
-        <script src="./index.js"></script>
-        <script src="../login/login.js"></script>
+        <script type="module" src="./index.js"></script>
+        <script type="module" src="../login/login.js"></script>
 </body>
 </html>

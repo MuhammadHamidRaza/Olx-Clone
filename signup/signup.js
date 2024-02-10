@@ -1,57 +1,63 @@
-const users= JSON.parse(localStorage.getItem('users')) || []
-function signup(){
-    
+// Assuming Firebase auth and db are properly initialized
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js"; 
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+import { auth, db } from "../config.js";
+
+window.signup =  async function () {
     const allInputs = document.getElementsByTagName('input');
-    const fullName = allInputs[0]
-    const email = allInputs[1]
-    const password = allInputs[2]
-    const confirmPassword = allInputs[3] 
+    const fullName = allInputs[0].value;
+    const email = allInputs[1].value;
+    const password = allInputs[2].value;
+    const confirmPassword = allInputs[3].value;
 
-if(fullName.value ==='' || email.value ==='' || password.value === '' || confirmPassword.value === ''){
-    alert('Please fill all the input fields!');
-    return;
-} 
+    if (!validateForm(fullName, email, password, confirmPassword)) {
+        return;
+    }
 
-if(fullName.value.length === 1){
-    alert('Please enter your full name with minimum of 2 letters!')
-    return;
+    try {
+        // Creating user in Firebase Authentication
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        // console.log(userCredential)
+        
+        // Adding user data to Firestore
+        // await setDoc(doc(db, "users", "new-city-id"), data);
+        await setDoc(doc(db, 'users', userCredential.user.uid), {
+            name: fullName,
+            email: email, // Include email in Firestore if needed
+        });
+
+        // console.log('User created with ID:', userDocRef.id);
+        console.log('Sign Up Successful');
+        console.log(userCredential);
+
+        // Redirect only after successful signup
+        window.location.href = '../login/index.html';
+    } catch (error) {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error('Error creating user:', errorMessage);
+        alert(errorMessage); // Display error message to the user
+    }
 }
 
-if (!email.value.includes('@')) {
-    alert('Email must include @ in the format!');
-    return;
+function validateForm(fullName, email, password, confirmPassword) {
+    if (fullName === '' || email === '' || password === '' || confirmPassword === '') {
+        alert('Please fill in all the input fields!');
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        alert('Password does not match with confirm password!');
+        return false;
+    }
+
+    return true;
 }
 
-if ((email.value.match(/\d/g) || []).length < 3) {
-    alert('Email must include at least three numeric digits in the format!');
-    return;
-}
-
-if (password.value.length < 8) {
-    alert('Please enter a password with a minimum of 8 characters!');
-    return;
-}  
-
-if(password.value != confirmPassword.value){
-    alert('Password does not match with confirm password!');
-    return;
-}
-
-const user = {
-    fullName:fullName.value,
-    email:email.value,
-    password:password.value,
-}
-users.push(user);
-
-localStorage.setItem('users',JSON.stringify(users));
-
-alert('Signed up succesfully!')
-
-for(var i=0; i<allInputs.length; i++){
-    allInputs[i].value = '';
-}
-
-window.location.href='../login/index.html';
-
-}
+// Assuming you have a button with ID 'submitBtn'
+// const submitBtn = document.getElementById('submitBtn');
+// if (submitBtn) {
+    // submitBtn.addEventListener('click', sig/nup);
+// } else {
+    // console.error('Button with ID "submitBtn" not found in the document.');
+// }
